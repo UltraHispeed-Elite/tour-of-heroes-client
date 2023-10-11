@@ -25,9 +25,9 @@ export class HeroService {
   }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<Hero[]>(this.heroesUrl2)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(_ => console.log('fetched heroes')),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
@@ -74,6 +74,7 @@ export class HeroService {
   }
 
   private heroesUrl = 'api/heroes';
+  private heroesUrl2 = 'http://localhost:8080/api/heroes';
 
   private handleError<T>(operation = 'operation', result?: T ) {
     return (error: any): Observable<T> => {
